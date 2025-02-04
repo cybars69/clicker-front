@@ -3,7 +3,7 @@ import axios from "axios";
 const getUserData = async (setScore, setPrizes, setIsLoading) => {
   setIsLoading(true);
   axios
-    .get("http://localhost:5000/user", { withCredentials: true })
+    .get(`${import.meta.env.VITE_API_URL}/user`, { withCredentials: true })
     .then((response) => {
       setScore(response.data.score);
       setPrizes(response.data.prizes);
@@ -21,7 +21,11 @@ const sendClickEvent = async (
 ) => {
   setIsLoading(true);
   axios
-    .post("http://localhost:5000/click", {}, { withCredentials: true })
+    .post(
+      `${import.meta.env.VITE_API_URL}/click`,
+      {},
+      { withCredentials: true }
+    )
     .then((response) => {
       setScore(response.data.score);
 
@@ -48,7 +52,11 @@ const sendClickEvent = async (
 const sendResetEvent = async (setScore, setPrizes, setIsLoading) => {
   setIsLoading(true);
   axios
-    .post("http://localhost:5000/reset", {}, { withCredentials: true })
+    .post(
+      `${import.meta.env.VITE_API_URL}/reset`,
+      {},
+      { withCredentials: true }
+    )
     .then((response) => {
       setScore(0);
       setPrizes({});
