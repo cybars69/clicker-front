@@ -14,16 +14,24 @@ const Game = () => {
   const [message, setMessage] = useState("");
   const [open, setOpen] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
+    setIsLoading(true);
     getUserData(setScore, setPrizes);
+    setIsLoading(false);
   }, []);
 
   const handleClick = () => {
+    setIsLoading(true);
     sendClickEvent(setScore, setPrizes, setMessage, setOpen);
+    setIsLoading(false);
   };
 
   const handleReset = () => {
+    setIsLoading(true);
     sendResetEvent(setScore, setPrizes);
+    setIsLoading(false);
   };
 
   return (
@@ -46,6 +54,7 @@ const Game = () => {
         onClick={handleClick}
         style={{ marginTop: "20px" }}
         fullWidth
+        disabled={isLoading}
       >
         Click Me
       </Button>
@@ -55,6 +64,7 @@ const Game = () => {
         onClick={handleReset}
         style={{ marginTop: "20px" }}
         fullWidth
+        disabled={isLoading}
       >
         Reset my Score
       </Button>
