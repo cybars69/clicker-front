@@ -17,21 +17,15 @@ const Game = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-    getUserData(setScore, setPrizes);
-    setIsLoading(false);
+      getUserData(setScore, setPrizes, setIsLoading);
   }, []);
 
   const handleClick = () => {
-    setIsLoading(true);
-    sendClickEvent(setScore, setPrizes, setMessage, setOpen);
-    setIsLoading(false);
+    sendClickEvent(setScore, setPrizes, setMessage, setOpen, setIsLoading);
   };
 
   const handleReset = () => {
-    setIsLoading(true);
-    sendResetEvent(setScore, setPrizes);
-    setIsLoading(false);
+    sendResetEvent(setScore, setPrizes, setIsLoading);
   };
 
   return (
